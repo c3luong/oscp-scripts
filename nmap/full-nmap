@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ $# -ne 2 ]
+  then
+    echo "need 2 arguments"
+    exit 1
+fi
+
+nmap -sC -sV -vvv -oA $2-full -p- $1 
+PORTS=$(grep -Po "Ports:.*\t" $2-full.gnmap | grep -Po "\d*" | tr '\n' ',')
+nmap -sC -sV -vvv -oA $2 -p$PORTS $1

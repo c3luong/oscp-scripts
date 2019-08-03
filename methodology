@@ -1,0 +1,25 @@
+> NMAP
+nmap -sV -sC -oA nmap $TARGET                                                            # Normal nmap
+nmap -Pn -p- -vvv -oA $TARGET                                                            # Full nmap
+
+> IMAGES
+strings
+binwalk
+steghide extract -sf
+
+> CRACKING
+ssh2john
+sshng2john
+
+> SMB 
+smblookup -A <target>
+smbclient //MOUNT/share -I target -N
+rpcclient -U "" target
+smbmap -H <target>
+enum4linux <target>
+
+> ENCODING
+chardetect
+
+>BASE64
+echo -n "mystring" | base64 -d
